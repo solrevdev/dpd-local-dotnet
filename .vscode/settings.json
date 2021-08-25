@@ -1,5 +1,11 @@
 {
-    "cSpell.words": ["netstandard", "solrevdev"],
+    "cSpell.words": [
+        "Xunit",
+        "appsettings",
+        "dpdlocal",
+        "netstandard",
+        "solrevdev"
+    ],
     "files.exclude": {
         "**/bin": true,
         "**/obj": true,

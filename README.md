@@ -23,3 +23,53 @@ However, I hope this dpd-local-dotnet library will give you a good head start wi
 ## Getting Started
 
 todo....
+
+### Environments and appsettings.json
+
+The DPD Local documentation really only covers the the development environnement only mentioning that a sign off is required to get access to production credentials so with that in mind we are going to store our development credentials in an `appsettings.Development.json` file so that we can store our production credentials in an `appsettings.json` file.
+
+For example:
+
+**appsettings.Development.json**
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "DpdCredentials": {
+    "Name": "Development - DPD API Credentials",
+    "ApiUrl" : "api.dpdlocal.co.uk",
+    "Username": "DSmith",
+    "Password": "MYPassWd66",
+    "AccountNumber": "830567"
+  }
+}
+```
+
+**appsettings.json**
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "DpdCredentials": {
+    "Name": "Production - DPD API Credentials",
+    "ApiUrl" : "api.dpdlocal.co.uk",
+    "Username": "DSmith",
+    "Password": "MYPassWd66",
+    "AccountNumber": "830567"
+  }
+}
+
+```

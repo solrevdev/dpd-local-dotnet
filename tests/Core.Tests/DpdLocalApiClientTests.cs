@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -29,6 +30,34 @@ namespace Core.Tests
             var api = new DpdLocalApiClient(options, loggerForApi, dpdHttpClient);
 
             // Assert
+            Assert.NotNull(api);
+        }
+
+        [Fact]
+        public void Can_Actually_Login_To_DpdLocalApi()
+        {
+            // Arrange
+            var credentials = new DpdCredentials
+            {
+                Name = "Actual DPD credentials",
+                ApiUrl = "api.dpdlocal.co.uk",
+                Username = "magnets1",
+                Password = "parcels",
+                AccountNumber = "2256001"
+            };
+            var options = Options.Create(credentials);
+            var loggerForHttpClient = Mock.Of<ILogger<DpdHttpClient>>();
+            var loggerForApi = Mock.Of<ILogger<DpdLocalApiClient>>();
+            var httpClientFactory = new ServiceCollection().AddHttpClient().BuildServiceProvider().GetService<IHttpClientFactory>();
+            var dpdHttpClient = new DpdHttpClient(options, httpClientFactory, loggerForHttpClient);
+
+            // Act
+            var api = new DpdLocalApiClient(options, loggerForApi, dpdHttpClient);
+            api.Login();
+
+            // Assert
+            Assert.NotNull(credentials);
+            Assert.NotNull(httpClientFactory);
             Assert.NotNull(api);
         }
 

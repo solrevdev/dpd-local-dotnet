@@ -34,7 +34,7 @@ namespace Core.Tests
         }
 
         [Fact]
-        public void Can_Actually_Login_To_DpdLocalApi()
+        public async Task Can_Actually_Login_To_DpdLocalApi()
         {
             // Arrange
             var credentials = new DpdCredentials
@@ -53,7 +53,7 @@ namespace Core.Tests
 
             // Act
             var api = new DpdLocalApiClient(options, loggerForApi, dpdHttpClient);
-            api.Login();
+            await api.LoginAsync().ConfigureAwait(false);
 
             // Assert
             Assert.NotNull(credentials);

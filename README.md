@@ -1,5 +1,7 @@
 # dpd-local-dotnet
 
+> #deprecated and on-hold (not an active project currently but may pick up again later)
+
 A netstandard2.0 library that consumes the DPD Local API and provides a .NET client
 
 ## Register with DPD Local
